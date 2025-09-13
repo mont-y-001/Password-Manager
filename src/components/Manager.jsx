@@ -1,6 +1,17 @@
 import React from 'react'
+import { useRef } from 'react'
 
 const Manager = () => {
+    const ref = useRef(null)
+    const showPassword = () =>{
+        alert("Show the Password ");
+        console.log(ref.current.src)
+        if(ref.current.src.includes("icons/eyecross.png")){
+            ref.current.src = "icons/eye.png"
+        }else{
+            ref.current.src = "icons/eyecross.png"
+        }
+    }
     return (
         <>
             <div className="absolute inset-0 -z-10 h-full w-full bg-green-50 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]"><div class="absolute left-0 right-0 top-0 -z-10 m-auto h-[310px] w-[310px] rounded-full bg-green-400 opacity-20 blur-[100px]"></div></div>
@@ -15,7 +26,12 @@ const Manager = () => {
                     <input placeholder='Enter website URL' className='rounded-full border border-green-500 w-full p-4 py-1' type="text" name='' id='' />
                     <div className="flex w-full justify-between gap-8">
                         <input placeholder='Enter Username' className='rounded-full border border-green-500 w-full p-4 py-1' type="text" name='' id='' />
+                        <div className='relative'>
                         <input placeholder='Enter Password' className='rounded-full border border-green-500 w-full p-4 py-1' type="text" name='' id='' />
+                        <span className='absolute right-0 top-1 cursor-pointer' onClick={showPassword}>
+                            <img ref = {ref} className='px-2' src="icons/eye.png" alt="eye" />
+                        </span>
+                        </div>
 
                     </div>
                     <button className='flex justify-center gap-2 items-center bg-green-600 hover:bg-green-500 rounded-full py-2 px-2 w-fit border-1 border-green-900'>
